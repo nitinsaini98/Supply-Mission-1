@@ -33,16 +33,26 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:3, isStatic:false});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.4, isStatic:true});
 	World.add(world, packageBody);
 	
+	var options = {
+		isStatic:true	
+	}
 
 	//Create a Ground
-	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
+	ground = Bodies.rectangle(width/2, 650, width, 10 ,options);
  	World.add(world, ground);
 
+	boxLeftBody = Bodies.rectangle(300,610,20,100,options);
+	World.add(world, boxLeftBody);
+
+	boxBottomBody = Bodies.rectangle(410,650,200,20,options);
+	World.add(world, boxBottomBody);
 	
-	 
+	boxRightBody = Bodies.rectangle(520,610,20,100,options);
+	World.add(world, boxRightBody);
+
 	Engine.run(engine);
   
 }
@@ -53,8 +63,35 @@ function draw() {
   background(0);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
-  push();
-  pop();
+  
+  fill("red")
+  rect(300,610,20,100);
+  rect(410,650,200,20);
+  rect(520,610,20,100);
+
+  if(keyDown("LEFT_ARROW")){
+	helicopterSprite.x = helicopterSprite.x-20
+	translation = {
+	x:-20,
+    y: 0 
+	}
+   Matter.Body.translate(packageBody,translation);
+  }
+
+  if(keyDown("RIGHT_ARROW")){
+	helicopterSprite.x = helicopterSprite.x+20
+	translation = {
+	x:20,
+    y: 0 
+	}
+   Matter.Body.translate(packageBody,translation);
+  }
+
+  if(keyDown("DOWN_ARROW")){
+   Matter.Body.setStatic(packageBody,false);
+  }
+
+
   drawSprites();
  
 }
