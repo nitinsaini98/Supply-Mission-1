@@ -44,14 +44,14 @@ function setup() {
 	ground = Bodies.rectangle(width/2, 650, width, 10 ,options);
  	World.add(world, ground);
 
-	//boxLeftBody = Bodies.rectangle(300,610,20,100,options);
-	//World.add(world, boxLeftBody);
+	boxLeftBody = Bodies.rectangle(300,610,20,100,options);
+	World.add(world, boxLeftBody);
 
-	//boxBottomBody = Bodies.rectangle(410,650,200,20,options);
-	//World.add(world, boxBottomBody);
+	boxBottomBody = Bodies.rectangle(410,650,200,20,options);
+	World.add(world, boxBottomBody);
 	
-	//boxRightBody = Bodies.rectangle(520,610,20,100,options);
-	//World.add(world, boxRightBody);
+	boxRightBody = Bodies.rectangle(520,610,20,100,options);
+	World.add(world, boxRightBody);
 
 	Engine.run(engine);
   
@@ -59,15 +59,15 @@ function setup() {
 
 
 function draw() {
-  rectMode(CENTER);
-  background(0);
-  packageSprite.x= packageBody.position.x 
-  packageSprite.y= packageBody.position.y 
+	rectMode(CENTER);
+	background(0);
+	packageSprite.x= packageBody.position.x 
+	packageSprite.y= packageBody.position.y 
   
-  //fill("red")
-  //rect(300,610,20,100);
-  //rect(410,650,200,20);
-  //rect(520,610,20,100);
+	fill("red")
+	rect(300,610,20,100);
+	rect(410,650,200,20);
+	rect(520,610,20,100);
 
   if(keyDown("LEFT_ARROW")){
 	helicopterSprite.x = helicopterSprite.x-20
